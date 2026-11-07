@@ -23,7 +23,7 @@ pipeline {
         )
         string(
             name: 'REGISTRY_USERNAME',
-            defaultValue: 'selacloud',
+            defaultValue: 'dnyanhvi',
             description: 'Docker Hub or GitHub Container Registry username/organization'
         )
         booleanParam(
