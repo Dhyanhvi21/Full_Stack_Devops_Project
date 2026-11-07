@@ -82,12 +82,9 @@ pipeline {
                 echo "🧪 Running Django backend tests..."
                 dir('backend') {
                     sh '''
-                        python3 -m venv .venv
-                        . .venv/bin/activate
-                        pip install --upgrade pip
-                        pip install -r requirements.txt
-                        python manage.py check
-                        python manage.py test
+                        pip3 install --break-system-packages --quiet -r requirements.txt
+                        python3 manage.py check
+                        python3 manage.py test core --verbosity=2
                     '''
                 }
             }
@@ -197,7 +194,7 @@ pipeline {
         }
         failure {
             echo "❌ Pipeline failed! Capturing container logs..."
-            sh 'docker compose logs --tail=100 || true'
+            sh 'docker compose logs 2>&1 | tail -100 || true'
         }
     }
 }
