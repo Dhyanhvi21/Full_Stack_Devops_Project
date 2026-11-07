@@ -98,7 +98,7 @@ pipeline {
                 echo "🔨 Building React + Vite frontend assets..."
                 dir('frontend') {
                     sh '''
-                        npm install --legacy-peer-deps
+                        npm ci || npm install --legacy-peer-deps
                         npm run build
                     '''
                 }
