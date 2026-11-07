@@ -204,3 +204,4 @@ resource "aws_instance" "app_server" {
     Name = "${var.project_name}-server"
   }
 }
+

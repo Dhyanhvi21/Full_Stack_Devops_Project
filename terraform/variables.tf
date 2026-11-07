@@ -51,3 +51,4 @@ variable "app_repo_url" {
   type        = string
   default     = "https://github.com/example/devops-fullstack.git"
 }
+

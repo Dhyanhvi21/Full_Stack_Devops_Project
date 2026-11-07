@@ -40,3 +40,4 @@ Thumbs.db
 *.tfstate.*
 .terraform.lock.hcl
 terraform.tfvars
+

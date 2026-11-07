@@ -440,3 +440,4 @@ When running locally via Docker Compose or `./deploy.sh`:
 - [x] Terraform architecture files authored, formatted (`terraform fmt`), and validated (`terraform validate`).
 - [x] Detailed documentation (`DEVOPS.md` & `README.md`) prepared.
 - [x] Zero hardcoded secrets, API keys, or cloud credentials.
+

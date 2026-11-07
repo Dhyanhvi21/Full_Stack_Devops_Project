@@ -102,3 +102,4 @@ docker compose -f "${COMPOSE_FILE}" ps
 echo ""
 echo "🌐 Frontend URL: ${FRONTEND_HEALTH_URL}"
 echo "🌐 Backend API:  ${BACKEND_HEALTH_URL}"
+

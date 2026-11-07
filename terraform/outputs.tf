@@ -27,3 +27,4 @@ output "application_url" {
   description = "Web URL to access the deployed frontend on HTTP port 80"
   value       = "http://${aws_instance.app_server.public_ip}"
 }
+
