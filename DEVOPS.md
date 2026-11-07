@@ -430,6 +430,32 @@ When running locally via Docker Compose or `./deploy.sh`:
 
 ---
 
+## Application Verification Proof (Screenshots)
+
+Actual visual evidence demonstrating the live deployed application components, communication, and health endpoints:
+
+### 1. Frontend Web Application (React + Vite + TypeScript)
+Active single-page application at `http://localhost:3000` displaying real-time connectivity status (**Backend Online**) and the payload fetched from the Django REST API:
+
+![Frontend Running](docs/screenshots/frontend_app.png)
+
+### 2. Backend API Endpoint (`/api/hello/`)
+Active Django REST endpoint responding with JSON at `http://localhost:8000/api/hello/`:
+
+![Backend API Endpoint](docs/screenshots/backend_api_hello.png)
+
+### 3. Backend Health Check Endpoint (`/api/health/`)
+Liveness/readiness probe responding with healthy status at `http://localhost:8000/api/health/`:
+
+![Backend Health Check](docs/screenshots/backend_health.png)
+
+### 4. Frontend Health Check (`/healthz`)
+Nginx static health probe confirming web server availability at `http://localhost:3000/healthz`:
+
+![Frontend Health Check](docs/screenshots/frontend_health.png)
+
+---
+
 ## Final Verification Checklist
 
 - [x] Application source code copied safely into local workspace.

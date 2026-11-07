@@ -85,6 +85,20 @@ An optional AWS deployment configuration is prepared in the `terraform/` directo
 
 ---
 
+## Application Verification Screenshots
+
+Visual proof of the deployed, healthy application and endpoints:
+
+| Frontend UI (`http://localhost:3000`) | Backend Hello Endpoint (`/api/hello/`) |
+|:---:|:---:|
+| ![Frontend App](docs/screenshots/frontend_app.png) | ![Backend API](docs/screenshots/backend_api_hello.png) |
+
+| Backend Health Check (`/api/health/`) | Frontend Health Check (`/healthz`) |
+|:---:|:---:|
+| ![Backend Health](docs/screenshots/backend_health.png) | ![Frontend Health](docs/screenshots/frontend_health.png) |
+
+---
+
 ## Detailed DevOps Documentation
 
 For in-depth architectural details, Jenkins configuration, Docker security best practices, and troubleshooting logs, refer to [DEVOPS.md](./DEVOPS.md).
