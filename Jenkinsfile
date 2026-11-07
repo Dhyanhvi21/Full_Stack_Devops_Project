@@ -98,7 +98,7 @@ pipeline {
                 echo "🔨 Building React + Vite frontend assets..."
                 dir('frontend') {
                     sh '''
-                        npm ci
+                        npm install --legacy-peer-deps
                         npm run build
                     '''
                 }
@@ -194,7 +194,13 @@ pipeline {
         }
         failure {
             echo "❌ Pipeline failed! Capturing container logs..."
-            sh 'docker compose logs 2>&1 | tail -100 || true'
+            sh '''
+                if [ -f docker-compose.yml ]; then
+                    docker compose logs 2>&1 | tail -100 || true
+                elif [ -f ../docker-compose.yml ]; then
+                    docker compose -f ../docker-compose.yml logs 2>&1 | tail -100 || true
+                fi
+            '''
         }
     }
 }
