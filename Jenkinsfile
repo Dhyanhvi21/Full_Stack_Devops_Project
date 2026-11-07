@@ -176,8 +176,14 @@ pipeline {
             steps {
                 echo "🩺 Verifying endpoint connectivity..."
                 sh """
+                    docker compose exec -T backend curl -s -f http://localhost:8000/api/health/ || \
+                    curl -s -f -H 'Host: localhost' http://host.docker.internal:8000/api/health/ || \
                     curl -s -f ${BACKEND_HEALTH_URL} || { echo "❌ Backend health check failed"; exit 1; }
+
+                    docker compose exec -T frontend curl -s -f http://localhost/healthz || \
+                    curl -s -f http://host.docker.internal:3000/healthz || \
                     curl -s -f ${FRONTEND_HEALTH_URL} || { echo "❌ Frontend health check failed"; exit 1; }
+
                     echo "✅ All services healthy and responsive."
                 """
             }

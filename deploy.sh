@@ -60,7 +60,8 @@ echo "🔍 Performing health checks..."
 echo -n "Waiting for Django backend (${BACKEND_HEALTH_URL})..."
 backend_healthy=false
 for i in $(seq 1 "${MAX_RETRIES}"); do
-    if curl -s -f -o /dev/null "${BACKEND_HEALTH_URL}"; then
+    if curl -s -f -H "Host: localhost" -o /dev/null "${BACKEND_HEALTH_URL}" || \
+       docker compose -f "${COMPOSE_FILE}" exec -T backend curl -s -f -o /dev/null http://localhost:8000/api/health/; then
         backend_healthy=true
         echo " ✅ Healthy!"
         break
@@ -79,7 +80,8 @@ fi
 echo -n "Waiting for React frontend (${FRONTEND_HEALTH_URL})..."
 frontend_healthy=false
 for i in $(seq 1 "${MAX_RETRIES}"); do
-    if curl -s -f -o /dev/null "${FRONTEND_HEALTH_URL}"; then
+    if curl -s -f -o /dev/null "${FRONTEND_HEALTH_URL}" || \
+       docker compose -f "${COMPOSE_FILE}" exec -T frontend curl -s -f -o /dev/null http://localhost/healthz; then
         frontend_healthy=true
         echo " ✅ Healthy!"
         break
