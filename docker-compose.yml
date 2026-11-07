@@ -1,0 +1,49 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: devops-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=False
+      - SECRET_KEY=django-insecure-devops-production-key-change-in-env
+      - ALLOWED_HOSTS=localhost,127.0.0.1,backend
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    networks:
+      - devops-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=http://localhost:8000/api/hello/
+    container_name: devops-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    environment:
+      - VITE_API_URL=http://localhost:8000/api/hello/
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/healthz"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    networks:
+      - devops-network
+
+networks:
+  devops-network:
+    driver: bridge

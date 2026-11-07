@@ -1,0 +1,6 @@
+aws_region        = "us-east-1"
+environment       = "production"
+project_name      = "devops-fullstack"
+instance_type     = "t3.micro"
+ssh_public_key    = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC... user@hostname"
+app_repo_url      = "https://github.com/your-username/devops-fullstack-assessment.git"
